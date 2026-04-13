@@ -37,11 +37,19 @@ function addBook() {
 }
 
 function listBooks() {
-  console.log("Here is the list of books.");
+  books.forEach((book) =>
+    console.log(`
+      ${book.title} - ${book.author}. ${book.isRead ? "Read" : "Not Read"}.
+    `),
+  );
 }
 
 function markAsRead(title) {
-  console.log(title);
+  books.forEach((book) => {
+    if (title === book.title) {
+      book.isRead = true;
+    }
+  });
 }
 
 let running = true;
