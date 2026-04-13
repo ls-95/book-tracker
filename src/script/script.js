@@ -47,7 +47,17 @@ function listBooks() {
 }
 
 function removeBook(remove) {
-  console.log(remove);
+  const found = books.find(
+    ({ title }) => title.toLocaleLowerCase() === remove.toLocaleLowerCase(),
+  );
+  if (found) {
+    books = books.filter(
+      (book) => book.title.toLocaleLowerCase() !== remove.toLocaleLowerCase(),
+    );
+    alert(`"${found.title}" has been removed!`);
+  } else {
+    alert(`Couldn't find a book called: "${remove}"`);
+  }
 }
 
 function listUnreadBooks() {
@@ -105,14 +115,16 @@ while (running) {
     case "2":
       listBooks();
       break;
-    case "3":
+    case "3": {
       const title = prompt("Enter the title of the book to mark as read:");
       markAsRead(title);
       break;
-    case "4":
+    }
+    case "4": {
       const remove = prompt("Which book would you like to remove?");
       removeBook(remove);
       break;
+    }
     case "5":
       listUnreadBooks();
       break;
