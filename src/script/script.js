@@ -45,11 +45,17 @@ function listBooks() {
 }
 
 function markAsRead(title) {
+  let found = false;
   books.forEach((book) => {
-    if (title === book.title) {
+    if (title.toLowerCase() === book.title.toLowerCase()) {
       book.isRead = true;
+      found = true;
+      alert(`"${book.title}" is marked as read!`);
     }
   });
+  if (!found) {
+    alert(`Couldn't find a book called: ${title}`);
+  }
 }
 
 let running = true;
