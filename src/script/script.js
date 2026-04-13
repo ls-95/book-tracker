@@ -90,7 +90,7 @@ function markAsRead(title) {
     }
   });
   if (!found) {
-    alert(`Couldn't find a book called: ${title}`);
+    alert(`Couldn't find a book called: "${title}"`);
   }
 }
 
