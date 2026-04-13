@@ -27,7 +27,13 @@ let books = [
 ];
 
 function addBook() {
-  console.log("You added a book.");
+  const title = prompt("Enter the book title");
+  const author = prompt("Enter book author");
+  books.push({
+    title: title,
+    author: author,
+    isRead: false,
+  });
 }
 
 function listBooks() {
