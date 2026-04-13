@@ -37,11 +37,37 @@ function addBook() {
 }
 
 function listBooks() {
-  books.forEach((book) =>
-    console.log(`
-      ${book.title} - ${book.author}. ${book.isRead ? "Read" : "Not Read"}.
-    `),
-  );
+  let message = "The list of books:\n";
+  let number = 0;
+  books.forEach((book) => {
+    number++;
+    message += `${number}. ${book.title} - ${book.author}. ${book.isRead ? "Read" : "Not Read"}.\n`;
+  });
+  console.log(message);
+}
+
+function removeBook(remove) {
+  console.log(remove);
+}
+
+function listUnreadBooks() {
+  let unreadBooks = [];
+  let number = 0;
+  let message = "Here are your unread books:\n";
+  books.forEach((book) => {
+    if (book.isRead === false) {
+      unreadBooks.push(book);
+    }
+  });
+  if (unreadBooks.length > 0) {
+    unreadBooks.forEach((book) => {
+      number++;
+      message += `${number}. ${book.title} - ${book.author}\n`;
+    });
+    console.log(message);
+  } else {
+    alert("You have no unread books!");
+  }
 }
 
 function markAsRead(title) {
@@ -66,7 +92,9 @@ while (running) {
       1. Add Book
       2. List Books
       3. Mark Book as Read
-      4. Exit
+      4. Remove Book
+      5. List Unread Books
+      6. Exit
       Enter your choice:
     `);
 
@@ -82,6 +110,13 @@ while (running) {
       markAsRead(title);
       break;
     case "4":
+      const remove = prompt("Which book would you like to remove?");
+      removeBook(remove);
+      break;
+    case "5":
+      listUnreadBooks();
+      break;
+    case "6":
       running = false;
       alert("Goodbye!");
       break;
